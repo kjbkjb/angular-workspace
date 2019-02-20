@@ -1,20 +1,22 @@
 import {Paged} from './paged';
-import {ActivatedRoute, Params} from '@angular/router';
 import {Injectable} from '@angular/core';
 import {PagedParameters} from './pagedParameters';
+import {Params} from '@angular/router';
 
 @Injectable()
 export class PagingService implements Paged {
   pagedParameters: PagedParameters;
+  state: { paginationVisible: false; buttonPreviousEnabled: false; buttonNextEnabled: false; pageButtons: [] };
 
   firstPage(): number {
-    console.log('first page')
+    console.log('first page');
     this.pagedParameters.current_page = 1;
     return this.pagedParameters.current_page;
   }
 
   gotoPage(pageNumber: number) {
     console.log('go to page ' + pageNumber);
+    this.pagedParameters.current_page = pageNumber;
     return pageNumber;
   }
 
@@ -25,17 +27,17 @@ export class PagingService implements Paged {
   }
 
   nextPage(): number {
-    console.log('next page')
-    this.pagedParameters.current_page += 1
+    console.log('next page');
+    this.pagedParameters.current_page += 1;
     return this.pagedParameters.current_page;
   }
 
-  populateFromMetadata(pagedParameters: PagedParameters) {
+  collect(pagedParameters: PagedParameters) {
     this.pagedParameters = pagedParameters;
   }
 
   previousPage(): number {
-    this.pagedParameters.current_page -= 1
+    this.pagedParameters.current_page -= 1;
     return this.pagedParameters.current_page;
   }
 
@@ -43,7 +45,10 @@ export class PagingService implements Paged {
     return undefined;
   }
 
-  constructor(){
+  setState(): void {
+    // TODO: Implement observable on pagedParameters and set the state objects to control the UX
+  }
 
+  constructor() {
   }
 }
