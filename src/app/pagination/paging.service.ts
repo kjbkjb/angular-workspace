@@ -15,6 +15,7 @@ export class PagingService implements Paged {
   }
 
   gotoPage(pageNumber: number) {
+    if(pageNumber < 1 || pageNumber > this.pagedParameters.total_pages) { return this.pagedParameters.current_page; }
     console.log('go to page ' + pageNumber);
     this.pagedParameters.current_page = pageNumber;
     return pageNumber;
@@ -27,6 +28,7 @@ export class PagingService implements Paged {
   }
 
   nextPage(): number {
+    if(this.pagedParameters.current_page === this.pagedParameters.total_pages) { return this.pagedParameters.current_page; }
     console.log('next page');
     this.pagedParameters.current_page += 1;
     return this.pagedParameters.current_page;
@@ -37,6 +39,7 @@ export class PagingService implements Paged {
   }
 
   previousPage(): number {
+    if (this.pagedParameters.current_page === 1) { return 1; }
     this.pagedParameters.current_page -= 1;
     return this.pagedParameters.current_page;
   }

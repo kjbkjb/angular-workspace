@@ -48,13 +48,13 @@ describe('PagingService', () => {
 
   describe('boundaries', () => {
     it('should not navigate past last page', () => {
-      pagingService.pagedParameters.current_page = pagingService.pagedParameters.total_pages;
+      pagingService.gotoPage(10)
       expect(pagingService.nextPage()).toBe(10);
       expect(pagingService.pagedParameters.current_page).toBe(pagingService.pagedParameters.total_pages);
     });
 
     it('should not navigate before first page', () => {
-      pagingService.pagedParameters.current_page = pagingService.pagedParameters.total_pages;
+      pagingService.gotoPage(1);
       expect(pagingService.previousPage()).toBe(1);
       expect(pagingService.pagedParameters.current_page).toBe(1);
     });
