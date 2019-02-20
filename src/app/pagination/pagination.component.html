@@ -1,3 +1,5 @@
 <p>
-  pagination works!
+  {{ pagingService.pagedParameters.current_page }}
+  <button (click)="pagingService.previousPage()">Previous</button>
+  <button (click)="pagingService.nextPage()">Next</button>
 </p>
