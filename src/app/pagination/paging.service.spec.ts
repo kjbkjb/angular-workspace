@@ -66,4 +66,30 @@ describe('PagingService', () => {
     });
 
   });
+
+  describe('controls state', () => {
+    it('should be visible if more than one page', () => {
+      expect(pagingService.state.paginationVisible).toBeTruthy();
+    });
+
+    it('should not be visible if one page', () => {
+      expect(pagingService.state.paginationVisible).toBeFalsy();
+    });
+
+    it('should previous button enabled', () => {
+      expect(pagingService.state.buttonPreviousEnabled).toBeTruthy();
+    });
+
+    it('should previous button disabled', () => {
+      expect(pagingService.state.buttonPreviousEnabled).toBeFalsy();
+    });
+
+    it('should next button enabled', () => {
+      expect(pagingService.state.buttonNextEnabled).toBeTruthy();
+    });
+
+    it('should next button disabled', () => {
+      expect(pagingService.state.buttonNextEnabled).toBeFalsy();
+    });
+  });
 });

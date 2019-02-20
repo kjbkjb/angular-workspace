@@ -6,7 +6,7 @@ import {Params} from '@angular/router';
 @Injectable()
 export class PagingService implements Paged {
   pagedParameters: PagedParameters;
-  state: { paginationVisible: false; buttonPreviousEnabled: false; buttonNextEnabled: false; pageButtons: [] };
+  state: { paginationVisible: boolean; buttonPreviousEnabled: boolean; buttonNextEnabled: boolean; pageButtons: [] };
 
   firstPage(): number {
     console.log('first page');
@@ -47,8 +47,15 @@ export class PagingService implements Paged {
 
   setState(): void {
     // TODO: Implement observable on pagedParameters and set the state objects to control the UX
+    this.state = {
+      paginationVisible: false,
+      buttonPreviousEnabled: false,
+      buttonNextEnabled: false,
+      pageButtons: []
+    };
   }
 
   constructor() {
+    this.setState();
   }
 }
