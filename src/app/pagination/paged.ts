@@ -11,7 +11,7 @@ export interface Paged {
 
   collect(pagedParameters: PagedParameters);
 
-  toApiParams(mergedParams: Params): PagedParameters;
+  toApiParams(mergedParams: Params): Params;
 
   nextPage(): number;
 
