@@ -73,14 +73,17 @@ describe('PagingService', () => {
     });
 
     it('should not be visible if one page', () => {
+      pagingService.pagedParameters.total_pages = 1
       expect(pagingService.state.paginationVisible).toBeFalsy();
     });
 
     it('should previous button enabled', () => {
+      pagingService.pagedParameters.current_page = 2;
       expect(pagingService.state.buttonPreviousEnabled).toBeTruthy();
     });
 
     it('should previous button disabled', () => {
+      pagingService.pagedParameters.current_page = 1;
       expect(pagingService.state.buttonPreviousEnabled).toBeFalsy();
     });
 
@@ -89,6 +92,7 @@ describe('PagingService', () => {
     });
 
     it('should next button disabled', () => {
+      pagingService.pagedParameters.current_page = 10;
       expect(pagingService.state.buttonNextEnabled).toBeFalsy();
     });
   });
